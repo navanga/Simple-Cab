@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.datarepublic.simplecab.model.CabTripData;
 
-@Repository("SimpleCabRepository")
+@Repository("simpleCabRepository")
 public class SimpleCabRepositoryJpaImpl implements SimpleCabRepository {
 
 	@PersistenceContext
@@ -44,18 +44,5 @@ public class SimpleCabRepositoryJpaImpl implements SimpleCabRepository {
 		c.add(Calendar.DATE, 1);
 		return c.getTime();
 	}
-	
-	// Don't do this at home
-    private void simulateSlowService() {
-        try {
-        	System.out.println("in simulateSlowService()");
-        	
-            long time = 2000L;
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            throw new IllegalStateException(e);
-        }
-    }
-
 
 }

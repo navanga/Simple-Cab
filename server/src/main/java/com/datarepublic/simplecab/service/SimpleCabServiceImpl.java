@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.datarepublic.simplecab.repository.SimpleCabRepositoryJpaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.datarepublic.simplecab.repository.SimpleCabRepository;
 
-@Service("SimpleCabService")
+@Service("simpleCabService")
 public class SimpleCabServiceImpl implements SimpleCabService {
 
 	@Autowired
@@ -31,5 +33,5 @@ public class SimpleCabServiceImpl implements SimpleCabService {
 				medallion -> simpleCabRepository.getCountByMedallionAndPickupDatetime(medallion, pickupDate)));
 
 	}
-	
+
 }

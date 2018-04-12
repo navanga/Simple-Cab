@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.datarepublic.simplecab.exception.RestApiException;
+import com.datarepublic.simplecab.exception.RestApiHttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.CollectionUtils;
@@ -29,13 +31,12 @@ public class SimpleCabController {
 	public Map<String, Long> getCountByMedallionsAndPickupDatetime(@RequestParam List<String> medallions, 
 																	  @RequestParam(value = "pickupDate") 
 																	  @DateTimeFormat(pattern = "dd/MM/yyyy") Date pickupDate, 
-																	  @RequestParam boolean ignoreCache) {
-		//TODO exception handling in API's	
+																	  @RequestParam boolean ignoreCache) throws Exception {
 		if(CollectionUtils.isEmpty(medallions)) {
-			throw new IllegalArgumentException("medallion names are required");
+			throw new RestApiException(RestApiHttpStatus.BAD_REQUEST).userMessage("Medallion names are required");
 		}
 		if(pickupDate == null) {
-			throw new IllegalArgumentException("PickupDate is required");
+			throw new RestApiException(RestApiHttpStatus.BAD_REQUEST).userMessage("PickupDate is required");
 		}
 		
 		return simpleCabService.getCountByMedallionsAndPickupDatetime(medallions, pickupDate, ignoreCache);

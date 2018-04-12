@@ -1,8 +1,5 @@
 package com.datarepublic.simplecab.model;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,6 +7,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.io.Serializable;
+import java.util.Date;
 
 
 @NamedQuery(name = "CabTripData.findTripsByMedallionAndPickupDate",
@@ -34,7 +33,18 @@ public class CabTripData implements Serializable {
 
 	@Column(name="rate_Code")
 	private Integer rateCode;
-	
+
+	public CabTripData() {
+	}
+
+	public Date getPickupDateTime() {
+		return pickupDateTime;
+	}
+
+	public void setPickupDateTime(Date pickupDateTime) {
+		this.pickupDateTime = pickupDateTime;
+	}
+
 	@Id
 	@Column(name="pickup_datetime")
 	@Temporal(TemporalType.TIMESTAMP)
